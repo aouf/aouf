@@ -2,7 +2,9 @@ const fs = require('fs');
 const path = require('path');
 const { graphql } = require('graphql');
 const { introspectionQuery, printSchema } = require('graphql/utilities');
-const schema = require('../src/schema');
+const schema = require('../packages/aouf-api/src/schema');
+
+const OUTPUT_PATHS = [path.join(__dirname, '../packages/aouf-web-app')];
 
 // Save JSON of full schema introspection for Babel Relay Plugin to use
 (async () => {
@@ -24,20 +26,13 @@ const schema = require('../src/schema');
       JSON.stringify(errors, null, 2),
     );
   } else {
-    fs.writeFileSync(
-      path.join(__dirname, '../schema.json'),
-      JSON.stringify(result, null, 2),
-    );
+    OUTPUT_PATHS.forEach(path => {
+      fs.writeFileSync(`${path}/schema.graphql`, printSchema(schema));
+      fs.writeFileSync(`${path}/schema.json`, JSON.stringify(result, null, 2));
+    });
+
     // eslint-disable-next-line no-console
+    console.error('👍  schema exported: ');
     process.exit(0);
   }
 })();
-
-// Save user readable type system shorthand of schema
-fs.writeFileSync(
-  path.join(__dirname, '../schema.graphql'),
-  printSchema(schema),
-);
-
-// eslint-disable-next-line no-console
-console.error('👍  schema exported: ');

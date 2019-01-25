@@ -8,7 +8,6 @@
     "db:create": "node scripts/db-create",
     "db:destroy": "node scripts/db-destroy",
     "db:clear": "node scripts/db-clear",
-    "schema:export": "node scripts/schema-export",
     "start": "nodemon src",
     "lint": "eslint ./"
   },
