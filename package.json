@@ -8,9 +8,11 @@
     ]
   },
   "scripts": {
-    "dev:web": "node scripts/dev-web"
+    "dev:web": "node scripts/dev-web",
+    "schema:export": "node scripts/schema-export"
   },
   "devDependencies": {
+    "graphql": "^14.1.1",
     "stmux": "^1.6.1"
   }
 }
