@@ -2,12 +2,12 @@ import React from 'react';
 import { Switch } from 'react-router-dom';
 import AppRoute from './Route';
 
-import HelloWorld from '../../pages/HelloWorld';
+import Home from '../../pages/Home';
 import NotFoundError from '../../pages/NotFoundError';
 
 const App = () => (
   <Switch>
-    <AppRoute path="/" exact component={HelloWorld} />
+    <AppRoute path="/" exact component={Home} />
     <AppRoute statusCode={404} component={NotFoundError} />
   </Switch>
 );

@@ -14,6 +14,10 @@ const Document = ({
   <html lang={lang} dir={dir}>
     <head>
       <title>App</title>
+      <link
+        href="https://fonts.googleapis.com/css?family=Montserrat:300,600,700"
+        rel="stylesheet"
+      />
     </head>
     <body>
       <div id={BUNDLE_DOM_NODE_ID}>
