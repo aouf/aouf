@@ -38,7 +38,7 @@ const client = loadClient();
 
 const renderController = async (req, res) => {
   const { render, scripts } = DEV_ENV ? loadClient() : client;
-  const { status, redirect, send } = await render({ url: req.url, scripts });
+  const { status, redirect, send } = await render({ request: req, scripts });
 
   if (redirect) {
     res.redirect(status, redirect);
