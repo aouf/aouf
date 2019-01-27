@@ -49,7 +49,7 @@ const server = {
   name: 'server',
   target: 'node',
   entry: {
-    main: './src/client/static',
+    main: ['@babel/polyfill', './src/client/static'],
   },
   output: {
     ...commonConfig.output,
