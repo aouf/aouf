@@ -4,6 +4,7 @@
     "@babel/preset-react",
     "@emotion/babel-preset-css-prop"
   ],
+  "plugins": ["relay"],
   "env": {
     "production": {
       "ignore": ["__tests__", "**/*.test.js", "__mocks__", "**/*.mock.js"]

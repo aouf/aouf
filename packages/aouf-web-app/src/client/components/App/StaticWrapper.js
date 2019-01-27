@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StaticRouter } from 'react-router';
-import { BUNDLE_DOM_NODE_ID } from '../../constants';
+import { BUNDLE_DOM_NODE_ID, RELAY_INITITAL_DATA_VAR } from '../../constants';
 
 const AppServerWrapper = ({
   lang,
@@ -9,6 +9,7 @@ const AppServerWrapper = ({
   scripts,
   location,
   staticContext,
+  initialData,
   children,
 }) => (
   <html lang={lang} dir={dir}>
@@ -21,6 +22,16 @@ const AppServerWrapper = ({
           {children}
         </StaticRouter>
       </div>
+      {initialData && (
+        <script
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: `window.${RELAY_INITITAL_DATA_VAR} = ${JSON.stringify(
+              initialData,
+            )};`,
+          }}
+        />
+      )}
       {scripts.map(script => (
         <script {...script} />
       ))}
@@ -35,6 +46,7 @@ AppServerWrapper.propTypes = {
   scripts: PropTypes.arrayOf(PropTypes.object.isRequired),
   lang: PropTypes.string,
   dir: PropTypes.string,
+  initialData: PropTypes.object,
 };
 
 export default AppServerWrapper;

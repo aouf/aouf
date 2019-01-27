@@ -3,3 +3,4 @@
 /build
 /schema.graphql
 /schema.json
+__generated__
