@@ -1,15 +1,15 @@
 import React from 'react';
-import logo from '../assets/logo-big.png';
-import { theme } from '../../theme';
+import logo from '../../assets/logo-big.png';
+import { Theme } from '../../theme';
 
 const NavBar = () => (
-  <nav css={theme.NavBar}>
-    <div css={theme.NavBarTitle}>
+  <nav css={Theme.NavBar}>
+    <div css={Theme.NavBarTitle}>
       <a href="">
         <img src={logo} alt="" />
       </a>
     </div>
-    <div css={theme.NavBarMenu} />
+    <div css={Theme.NavBarMenu} />
   </nav>
 );
 
