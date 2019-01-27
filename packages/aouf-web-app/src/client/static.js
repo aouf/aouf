@@ -1,39 +1,33 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { renderToString } from 'react-dom/server';
 import StaticWrapper from './components/App/StaticWrapper';
 import App from './components/App';
-import { BUNDLE_DOM_NODE_ID } from './constants';
 
-const Document = ({
-  location,
-  staticContext,
-  scripts = [],
-  lang = 'fr',
-  dir = 'ltr',
-}) => (
-  <html lang={lang} dir={dir}>
-    <head>
-      <title>App</title>
-    </head>
-    <body>
-      <div id={BUNDLE_DOM_NODE_ID}>
-        <StaticWrapper location={location} context={staticContext}>
-          <App />
-        </StaticWrapper>
-      </div>
-      {scripts.map(script => (
-        <script {...script} />
-      ))}
-    </body>
-  </html>
-);
+const render = ({ url, scripts }) => {
+  const staticContext = {};
+  const output = `<!doctype html>\n${renderToString(
+    <StaticWrapper
+      location={url}
+      scripts={scripts}
+      staticContext={staticContext}
+    >
+      <App />
+    </StaticWrapper>,
+  )}`
+    // move styles from body to the head
+    .replace(/(<\/head>[\s]*<body[\s>].*)(<style.+\/style>)/gi, '$2$1');
 
-Document.propTypes = {
-  location: PropTypes.string,
-  staticContext: PropTypes.object,
-  scripts: PropTypes.arrayOf(PropTypes.object.isRequired),
-  lang: PropTypes.string,
-  dir: PropTypes.string,
+  if (staticContext.url) {
+    return {
+      status: staticContext.statusCode === 301 ? 301 : 302,
+      redirect: staticContext.url,
+    };
+  }
+
+  return {
+    status: staticContext.statusCode || 200,
+    send: output,
+  };
 };
 
-export default Document;
+export default render;
