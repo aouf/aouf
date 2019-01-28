@@ -2,11 +2,30 @@ import React from 'react';
 import Layout from '../components/App/Layout';
 import { Theme } from '../theme';
 
+import AppScreen from '../assets/accueil-aouf-app.png';
+import Logo from '../assets/aouf.png';
+
 const Home = () => (
   <Layout>
     <main>
-      <section css={Theme.Hero}>
-        <img src="" alt="Écran d'accueil de l'application" />
+      <section css={Theme.HomeHero}>
+        <div>
+          <img src={AppScreen} alt="Écran d'accueil de l'application" />
+        </div>
+        <div>
+          <h1 css={Theme.HomeHeroTitle}>
+            <span css={Theme.HomeHeroTitleSpan}>Aouf</span>, la <br />
+            plateforme
+            <br />
+            d'engagement <br />
+            solidaire !
+          </h1>
+          <a href="" css={Theme.HomeHeroButton}>
+            Me tenir informé·e
+          </a>
+        </div>
+      </section>
+      <section css={Theme.HomeDescription}>
         <div>
           <p>
             Depuis le drame du 5 novembre, de nombreuses forces vives
@@ -25,11 +44,12 @@ const Home = () => (
             née de ce constat. Elle a pour vocation d'apporter des solutions
             d'hyperproximité en réponse à un quotidien morcelé et éreintant.
           </p>
-          <a href="" />
+        </div>
+        <div>
+          <img src={Logo} alt="Aouf" />
         </div>
       </section>
-      <section css={Theme.Description}>Description</section>
-      <section css={Theme.Features}>Features</section>
+      <section css={Theme.HomeFeatures}>Features</section>
     </main>
   </Layout>
 );

@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../assets/logo-nb.png';
+import logo from '../../assets/aouf-nb.png';
 
 import { Theme } from '../../theme';
 

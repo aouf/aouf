@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../assets/logo-big.png';
+import logo from '../../assets/aouf.png';
 
 import { Theme } from '../../theme';
 

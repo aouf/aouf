@@ -6,11 +6,12 @@ export const GlobalSettings = {
   },
   html: {
     // Set fontSize in % for rem sizing
+    fontFamily: 'Montserrat, sans-serif',
   },
 };
 
 export const Theme = {
-  // Layout
+  /* LAYOUT */
   Navbar: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -20,7 +21,6 @@ export const Theme = {
 
     backgroundColor: '#102a33',
   },
-  NavbarTitle: {},
   NavbarTitleImage: { width: '101px', height: '65px' },
   NavbarMenu: {
     display: 'flex',
@@ -36,7 +36,6 @@ export const Theme = {
     },
     listStyleType: 'none',
     a: {
-      fontFamily: 'Montserrat, sans-serif',
       fontSize: '18px',
       fontWeight: 600,
       color: '#fd7b66',
@@ -55,8 +54,43 @@ export const Theme = {
     backgroundColor: '#102a33',
   },
 
-  // Pages
-  HomeHero: {},
-  HomeDescription: {},
+  /* PAGES */
+  // Home
+  HomeHero: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '20px',
+  },
+  HomeHeroTitle: {
+    fontSize: '56.5px',
+    fontWeight: 800,
+    color: '#fd7b66',
+    textTransform: 'uppercase',
+  },
+  HomeHeroTitleSpan: {
+    color: '#102a33',
+  },
+  HomeHeroButton: {
+    display: 'inline-block',
+    margin: '18px 0 0 0',
+    padding: '12px 20px',
+
+    color: '#fff',
+    fontWeight: 800,
+    textDecoration: 'none',
+    backgroundColor: '#102a33',
+    borderRadius: '24px',
+  },
+
+  HomeDescription: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '100px',
+
+    color: '#fff',
+    backgroundColor: '#102a33',
+  },
   HomeFeatures: {},
 };
