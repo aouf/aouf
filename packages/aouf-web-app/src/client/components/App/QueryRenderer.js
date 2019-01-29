@@ -12,6 +12,7 @@ const AppQueryRenderer = ({ children, ...otherProps }) => {
 
   return (
     <RelayQueryRenderer
+      {...otherProps}
       environment={getEnvironment()}
       render={({ error, props }) =>
         children({
@@ -20,7 +21,6 @@ const AppQueryRenderer = ({ children, ...otherProps }) => {
           loading: !error && !props,
         })
       }
-      {...otherProps}
     />
   );
 };
