@@ -1,3 +1,5 @@
+import bkg from './assets/accueil-aouf-app.png';
+
 export const GlobalSettings = {
   '*': {
     margin: 0,
@@ -7,6 +9,9 @@ export const GlobalSettings = {
   html: {
     // Set fontSize in % for rem sizing
     fontFamily: 'Montserrat, sans-serif',
+  },
+  p: {
+    margin: '16px 0',
   },
 };
 
@@ -54,12 +59,19 @@ export const Theme = {
     backgroundColor: '#102a33',
   },
 
-  /* PAGES */
-  // Home
-  HomeHero: {
+  /* GENERIC CONTAINER */
+  Container: {
+    margin: '0 auto',
+    maxWidth: '960px',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+
+  /* PAGES */
+  // Home
+  // - Hero section
+  HomeHero: {
     padding: '20px',
   },
   HomeHeroTitle: {
@@ -83,14 +95,58 @@ export const Theme = {
     borderRadius: '24px',
   },
 
+  // - Description section
   HomeDescription: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
     padding: '100px',
 
     color: '#fff',
     backgroundColor: '#102a33',
   },
-  HomeFeatures: {},
+  HomeDescriptionText: {
+    maxWidth: '50%',
+  },
+  HomeDescriptionLogo: {
+    width: '50%',
+    padding: '0 40px',
+    display: 'flex',
+    justifyContent: 'center',
+  },
+
+  // - Features section
+  HomeFeatures: {
+    padding: '40px',
+
+    position: 'relative',
+    width: '100%',
+    height: '100%',
+
+    // White background for smartphone picture
+    '&::before': {
+      content: '',
+      display: 'block',
+      height: '100%',
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      width: '100%',
+      zIndex: '1',
+      backgroundColor: '#fd7b66',
+      clipPath:
+        'polygon(0 80%, 40% 110%, 50% 0, 100% 0, 100% 100%, 40% 110%, 0 100%)',
+    },
+    '& > *': {
+      position: 'relative',
+      zIndex: '1',
+    },
+  },
+  HomeFeaturesScreen: {
+    width: '50%',
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  HomeFeaturesIcons: {
+    width: '50%',
+    display: 'flex',
+    justifyContent: 'center',
+  },
 };
