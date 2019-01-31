@@ -122,7 +122,7 @@ export const Theme = {
 
     // White background for smartphone picture
     '&::before': {
-      content: '',
+      content: '""',
       display: 'block',
       height: '100%',
       position: 'absolute',
