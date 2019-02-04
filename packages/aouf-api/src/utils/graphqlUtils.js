@@ -1,4 +1,5 @@
 const { GraphQLInt, GraphQLList, GraphQLNonNull } = require('graphql');
+const { ACCESS_FORBIDDEN } = require('../errors');
 
 const nonNull = type => new GraphQLNonNull(type);
 
@@ -15,8 +16,19 @@ const feedOffsetArgs = {
   },
 };
 
+const requireVolunteer = resolver => async (parent, args, req) => {
+  const { user } = await req.getViewer();
+
+  if (!user || user.isVolunteer) {
+    throw new Error(ACCESS_FORBIDDEN);
+  }
+
+  return resolver(parent, args, req);
+};
+
 module.exports = {
   feedOffsetArgs,
   listOf,
   nonNull,
+  requireVolunteer,
 };

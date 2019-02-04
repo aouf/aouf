@@ -14,7 +14,10 @@ const list = ({ isAvailable }, options) => {
   return qb;
 };
 
+const create = data => first(query(TABLE).insert(data));
+
 module.exports = {
+  create,
   read,
   list,
 };
