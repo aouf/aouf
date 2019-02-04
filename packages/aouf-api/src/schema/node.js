@@ -1,4 +1,5 @@
 const { fromGlobalId, nodeDefinitions } = require('../utils/relayUtils');
+const { read: readCategory } = require('../models/Category');
 const { read: readOffer } = require('../models/Offer');
 const { read: readUser } = require('../models/User');
 
@@ -9,6 +10,8 @@ node.createNodeResolver(({ type, id }, req) => {
     case 'Viewer': {
       return req.getViewer();
     }
+    case 'Category':
+      return readCategory(fromGlobalId(id, type));
     case 'Offer':
       return readOffer(fromGlobalId(id, type));
     case 'User':

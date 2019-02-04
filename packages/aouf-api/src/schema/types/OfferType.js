@@ -2,12 +2,12 @@ const { GraphQLObjectType, GraphQLString, GraphQLBoolean } = require('graphql');
 const { globalIdField } = require('graphql-relay');
 const { nonNull } = require('../../utils/graphqlUtils');
 const { defineNodeType, nodeInterface } = require('../node');
-const PublicUserType = require('./PublicUserType');
+const { read: readCategory } = require('../../models/Category');
 const { read: readUser } = require('../../models/User');
 
 const OfferType = new GraphQLObjectType({
   name: 'Offer',
-  fields: {
+  fields: () => ({
     id: globalIdField('Offer'),
     isAvailable: {
       type: GraphQLBoolean,
@@ -21,12 +21,17 @@ const OfferType = new GraphQLObjectType({
       type: GraphQLString,
       description: 'Offer’s description',
     },
+    category: {
+      type: nonNull(require('./CategoryType')),
+      description: 'Offer’s category',
+      resolve: ({ categoryId }) => readCategory(categoryId),
+    },
     user: {
-      type: nonNull(PublicUserType),
+      type: nonNull(require('./PublicUserType')),
       description: 'The user who made the offer',
       resolve: ({ userId }) => readUser(userId),
     },
-  },
+  }),
   interfaces: [nodeInterface],
 });
 
