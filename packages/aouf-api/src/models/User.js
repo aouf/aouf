@@ -34,7 +34,15 @@ const list = ({ email, userName }, options) => {
 
 const create = data => first(query(TABLE).insert(data));
 
-const signupVolunteer = async ({ userName, email, password, phone }) => {
+const signup = async ({
+  userName,
+  email,
+  password,
+  phone,
+  isDislodged = false,
+  isVolunteer = false,
+  isAdmin = false,
+}) => {
   if (await first(query(TABLE)).where({ email })) {
     throw new Error(EMAIL_ALREADY_SIGNED_UP);
   }
@@ -44,9 +52,15 @@ const signupVolunteer = async ({ userName, email, password, phone }) => {
     email,
     phone,
     password: bcrypt.hashSync(password, 10),
-    isVolunteer: true,
+    isDislodged,
+    isVolunteer,
+    isAdmin,
   });
 };
+
+const signupDislodged = data => signup({ ...data, isDislodged: true });
+
+const signupVolunteer = data => signup({ ...data, isVolunteer: true });
 
 module.exports = {
   authenticate,
@@ -54,5 +68,6 @@ module.exports = {
   read,
   readByEmail,
   list,
+  signupDislodged,
   signupVolunteer,
 };
