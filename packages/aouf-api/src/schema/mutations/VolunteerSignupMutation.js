@@ -1,11 +1,11 @@
 const { GraphQLString } = require('graphql');
 const { nonNull } = require('../../utils/graphqlUtils');
-const ViewerType = require('../types/ViewerType');
-const { signupVolunteer } = require('../../models/User');
+const PublicUserType = require('../types/PublicUserType');
+const { read: readUser, signupVolunteer } = require('../../models/User');
 
 const VolunteerSignupMutation = {
   description: 'Signup the viewer as volunteer',
-  type: nonNull(ViewerType),
+  type: nonNull(PublicUserType),
   args: {
     userName: {
       type: nonNull(GraphQLString),
@@ -24,11 +24,10 @@ const VolunteerSignupMutation = {
       description: 'User’s phone',
     },
   },
-  resolve: async (root, { userName, email, password, phone }, req) => {
+  resolve: async (root, { userName, email, password, phone }) => {
     const userId = await signupVolunteer({ userName, email, password, phone });
-    req.setViewer({ userId });
 
-    return req.getViewer();
+    return readUser(userId);
   },
 };
 

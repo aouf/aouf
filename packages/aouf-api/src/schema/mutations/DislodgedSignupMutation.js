@@ -1,14 +1,14 @@
 const { GraphQLString } = require('graphql');
 const jwt = require('jsonwebtoken');
 const { nonNull } = require('../../utils/graphqlUtils');
-const ViewerType = require('../types/ViewerType');
-const { signupDislodged } = require('../../models/User');
+const PublicUserType = require('../types/PublicUserType');
+const { read: readUser, signupDislodged } = require('../../models/User');
 const { JWT_SECRET } = require('../../constants');
 const { INVALID_SIGNUP_TOKEN, UNKNOWN_ERROR } = require('../../errors');
 
 const DislodgedSignupMutation = {
   description: 'Signup the viewer as dislodged',
-  type: nonNull(ViewerType),
+  type: nonNull(PublicUserType),
   args: {
     token: {
       type: nonNull(GraphQLString),
@@ -19,7 +19,7 @@ const DislodgedSignupMutation = {
       description: 'User’s password',
     },
   },
-  resolve: async (root, { token, password }, req) => {
+  resolve: async (root, { token, password }) => {
     try {
       jwt.verify(token, JWT_SECRET);
     } catch (e) {
@@ -31,11 +31,9 @@ const DislodgedSignupMutation = {
     }
 
     const { userName, email, phone } = jwt.decode(token);
-
     const userId = await signupDislodged({ userName, email, phone, password });
-    req.setViewer({ userId });
 
-    return req.getViewer();
+    return readUser(userId);
   },
 };
 
