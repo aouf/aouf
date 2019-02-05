@@ -17,7 +17,7 @@ viewerMiddleware.use((req, res, next) => {
     const { userId } = req.session.viewer || {};
 
     if (!user && userId) {
-      user = readUser(userId);
+      user = await readUser(userId);
     }
 
     return { userId, user };

@@ -16,6 +16,8 @@ const authenticate = async ({ email, password }) => {
 
 const read = id => first(query(TABLE).where({ id }));
 
+const readByEmail = email => first(query(TABLE).where({ email }));
+
 const list = ({ email, userName }, options) => {
   const qb = paginate(query(TABLE), options);
 
@@ -50,6 +52,7 @@ module.exports = {
   authenticate,
   create,
   read,
+  readByEmail,
   list,
   signupVolunteer,
 };

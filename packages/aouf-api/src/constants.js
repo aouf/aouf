@@ -18,6 +18,8 @@ const DB_USER = process.env.DB_USER || 'aouf';
 const DB_PASSWORD = process.env.DB_PASSWORD || 'aouf';
 const DB_ENABLE_SSL = process.env.DB_ENABLE_SSL || false;
 
+const DISLODGED_TOKEN_EXPIRATION_DELAY = 60 * 60 * 24 * 14; // two weeks
+
 module.exports = {
   DEV_ENV,
   COOKIE_SECRET,
@@ -31,4 +33,5 @@ module.exports = {
   DB_USER,
   DB_PASSWORD,
   DB_ENABLE_SSL,
+  DISLODGED_TOKEN_EXPIRATION_DELAY,
 };

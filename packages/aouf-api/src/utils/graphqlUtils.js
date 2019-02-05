@@ -16,10 +16,20 @@ const feedOffsetArgs = {
   },
 };
 
+const requireAdmin = resolver => async (parent, args, req) => {
+  const { user } = await req.getViewer();
+
+  if (!user || !user.isAdmin) {
+    throw new Error(ACCESS_FORBIDDEN);
+  }
+
+  return resolver(parent, args, req);
+};
+
 const requireVolunteer = resolver => async (parent, args, req) => {
   const { user } = await req.getViewer();
 
-  if (!user || user.isVolunteer) {
+  if (!user || !user.isVolunteer) {
     throw new Error(ACCESS_FORBIDDEN);
   }
 
@@ -30,5 +40,6 @@ module.exports = {
   feedOffsetArgs,
   listOf,
   nonNull,
+  requireAdmin,
   requireVolunteer,
 };
