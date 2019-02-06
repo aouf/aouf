@@ -11,7 +11,7 @@ const BUNDLE_SERVER_PATH = './build/server';
 const BUNDLE_CLIENT_PATH = './build/client';
 const BUNDLE_PUBLIC_PATH = '/assets';
 const BUNDLE_MANIFEST_OUTPUT = 'manifest.json';
-const { BUNDLE_DOM_NODE_ID } = require('./client/constants');
+const { BUNDLE_DOM_NODE_ID } = require('../client/constants');
 
 module.exports = {
   DEV_ENV,
