@@ -13,7 +13,7 @@ router.use('/api', proxyController({ target: API_ENDPOINT }));
 router.use(
   '/assets',
   express.static(BUNDLE_CLIENT_PATH),
-  express.static('src/public'),
+  express.static('public'),
 );
 router.use(renderController);
 

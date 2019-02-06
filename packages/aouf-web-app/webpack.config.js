@@ -9,7 +9,7 @@ const {
   BUNDLE_SERVER_PATH,
   BUNDLE_CLIENT_PATH,
   BUNDLE_PUBLIC_PATH,
-} = require('./src/constants');
+} = require('./server/constants');
 
 const commonConfig = {
   mode: DEV_ENV ? 'development' : 'production',
@@ -25,7 +25,7 @@ const commonConfig = {
         ],
       },
       {
-        test: /src\/public\//,
+        test: /\/public\//,
         use: [
           {
             loader: 'file-loader',
@@ -49,7 +49,7 @@ const server = {
   name: 'server',
   target: 'node',
   entry: {
-    main: ['@babel/polyfill', './src/client/static'],
+    main: ['@babel/polyfill', './client/static'],
   },
   output: {
     ...commonConfig.output,
@@ -86,7 +86,7 @@ const client = {
   ...commonConfig,
   name: 'client',
   entry: {
-    main: './src/client',
+    main: './client',
   },
   output: {
     ...commonConfig.output,

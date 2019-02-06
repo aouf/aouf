@@ -2,14 +2,14 @@
   "name": "aouf-web-app",
   "version": "0.1.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "server/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode production",
     "build:watch": "webpack --watch --mode development",
-    "build:relay": "relay-compiler --src src --schema ./schema.graphql",
+    "build:relay": "relay-compiler --src client --schema ./schema.graphql",
     "build:clear": "rm -rf ./build",
-    "start": "nodemon src",
+    "start": "nodemon server",
     "lint": "eslint ./"
   },
   "author": "",
